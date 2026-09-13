@@ -42,15 +42,15 @@ namespace tides {
 
 typedef uint8_t ResourceId;
 
-extern const uint16_t* lookup_table_table[];
+extern const uint16_t* const lookup_table_table[];
 
-extern const uint32_t* lookup_table_32_table[];
+extern const uint32_t* const lookup_table_32_table[];
 
-extern const int16_t* waveform_table[];
+extern const int16_t* const waveform_table[];
 
-extern const int16_t* wavetable_table[];
+extern const int16_t* const wavetable_table[];
 
-extern const int16_t* waveshaper_table[];
+extern const int16_t* const waveshaper_table[];
 
 extern const uint16_t lut_attenuverter_curve[];
 extern const uint16_t lut_slope_compression[];

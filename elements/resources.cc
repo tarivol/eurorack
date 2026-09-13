@@ -167,13 +167,13 @@ const int16_t lut_db_led_brightness[] = {
 };
 
 
-const int16_t* lookup_table_int16_table[] = {
+const int16_t* const lookup_table_int16_table[] = {
   lut_db_led_brightness,
 };
 
 
 
-const uint32_t* lookup_table_uint32_table[] = {
+const uint32_t* const lookup_table_uint32_table[] = {
 };
 
 const float lut_sine[] = {
@@ -2328,7 +2328,7 @@ const float lut_svf_shift[] = {
 };
 
 
-const float* lookup_table_table[] = {
+const float* const lookup_table_table[] = {
   lut_sine,
   lut_approx_svf_gain,
   lut_approx_svf_g,
@@ -44601,7 +44601,7 @@ const int16_t smp_noise_sample[] = {
 };
 
 
-const int16_t* sample_table[] = {
+const int16_t* const sample_table[] = {
   smp_sample_data,
   smp_noise_sample,
 };
@@ -44613,7 +44613,7 @@ const size_t smp_boundaries[] = {
 };
 
 
-const size_t* sample_boundary_table[] = {
+const size_t* const sample_boundary_table[] = {
   smp_boundaries,
 };
 

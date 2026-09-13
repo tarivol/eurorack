@@ -42,15 +42,15 @@ namespace peaks {
 
 typedef uint8_t ResourceId;
 
-extern const char* string_table[];
+extern const char* const string_table[];
 
-extern const uint16_t* lookup_table_table[];
+extern const uint16_t* const lookup_table_table[];
 
-extern const uint32_t* lookup_table_32_table[];
+extern const uint32_t* const lookup_table_32_table[];
 
-extern const uint8_t* waveform_8_table[];
+extern const uint8_t* const waveform_8_table[];
 
-extern const int16_t* waveform_table[];
+extern const int16_t* const waveform_table[];
 
 extern const uint16_t lut_delay_times[];
 extern const uint16_t lut_gravity[];

@@ -37,7 +37,7 @@ namespace peaks {
 static const char str_dummy[] = "dummy";
 
 
-const char* string_table[] = {
+const char* const string_table[] = {
   str_dummy,
 };
 
@@ -646,7 +646,7 @@ const uint16_t lut_svf_scale[] = {
 };
 
 
-const uint16_t* lookup_table_table[] = {
+const uint16_t* const lookup_table_table[] = {
   lut_delay_times,
   lut_gravity,
   lut_env_linear,
@@ -821,7 +821,7 @@ const uint32_t lut_oscillator_increments[] = {
 };
 
 
-const uint32_t* lookup_table_32_table[] = {
+const uint32_t* const lookup_table_32_table[] = {
   lut_lfo_increments,
   lut_env_increments,
   lut_oscillator_increments,
@@ -10037,7 +10037,7 @@ const uint8_t wav_digits[] = {
 };
 
 
-const uint8_t* waveform_8_table[] = {
+const uint8_t* const waveform_8_table[] = {
   wav_digits,
 };
 
@@ -11079,7 +11079,7 @@ const int16_t wav_overdrive[] = {
 };
 
 
-const int16_t* waveform_table[] = {
+const int16_t* const waveform_table[] = {
   wav_sine,
   wav_fold_power,
   wav_fold_sine,

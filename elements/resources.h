@@ -42,15 +42,15 @@ namespace elements {
 
 typedef uint8_t ResourceId;
 
-extern const int16_t* lookup_table_int16_table[];
+extern const int16_t* const lookup_table_int16_table[];
 
-extern const uint32_t* lookup_table_uint32_table[];
+extern const uint32_t* const lookup_table_uint32_table[];
 
-extern const float* lookup_table_table[];
+extern const float* const lookup_table_table[];
 
-extern const int16_t* sample_table[];
+extern const int16_t* const sample_table[];
 
-extern const size_t* sample_boundary_table[];
+extern const size_t* const sample_boundary_table[];
 
 extern const int16_t lut_db_led_brightness[];
 extern const float lut_sine[];

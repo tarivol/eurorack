@@ -37,7 +37,7 @@ namespace frames {
 static const char str_dummy[] = "dummy";
 
 
-const char* string_table[] = {
+const char* const string_table[] = {
   str_dummy,
 };
 
@@ -1470,7 +1470,7 @@ const uint16_t lut_exponential[] = {
 };
 
 
-const uint16_t* lookup_table_table[] = {
+const uint16_t* const lookup_table_table[] = {
   lut_easing_in_quartic,
   lut_easing_out_quartic,
   lut_easing_in_out_sine,
@@ -1524,7 +1524,7 @@ const uint32_t lut_increments[] = {
 };
 
 
-const uint32_t* lookup_table_hr_table[] = {
+const uint32_t* const lookup_table_hr_table[] = {
   lut_increments,
 };
 
@@ -2689,7 +2689,7 @@ const uint8_t wt_lfo_waveforms[] = {
 };
 
 
-const uint8_t* wt_table[] = {
+const uint8_t* const wt_table[] = {
   wt_lfo_waveforms,
 };
 

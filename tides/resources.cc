@@ -170,7 +170,7 @@ const uint16_t lut_slope_compression[] = {
 };
 
 
-const uint16_t* lookup_table_table[] = {
+const uint16_t* const lookup_table_table[] = {
   lut_attenuverter_curve,
   lut_slope_compression,
 };
@@ -335,7 +335,7 @@ const uint32_t lut_cutoff[] = {
 };
 
 
-const uint32_t* lookup_table_32_table[] = {
+const uint32_t* const lookup_table_32_table[] = {
   lut_increments,
   lut_cutoff,
 };
@@ -7040,7 +7040,7 @@ const int16_t wav_unipolar_fold[] = {
 };
 
 
-const int16_t* waveform_table[] = {
+const int16_t* const waveform_table[] = {
   wav_inverse_tan_audio,
   wav_inverse_sin_audio,
   wav_linear_audio,
@@ -18498,7 +18498,7 @@ const int16_t wt_waves[] = {
 };
 
 
-const int16_t* wavetable_table[] = {
+const int16_t* const wavetable_table[] = {
   wt_waves,
 };
 
@@ -18763,7 +18763,7 @@ const int16_t ws_smooth_bipolar_fold[] IN_RAM = {
 };
 
 
-const int16_t* waveshaper_table[] = {
+const int16_t* const waveshaper_table[] = {
   ws_smooth_bipolar_fold,
 };
 
