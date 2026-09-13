@@ -219,17 +219,27 @@ lookup_tables.append(
 Quantizer for FM frequencies.
 ----------------------------------------------------------------------------"""
 
+import numpy as np
+
 detune_ratios = [-24, -12, -11.95, -5.0, -0.05, 0.0, 0.05, 7.0, 12.0, 19.0, 24.0]
 
 scale = []
 for ratio in detune_ratios:
-  scale.extend([ratio, ratio, ratio])
+    scale.extend([ratio, ratio, ratio])
 
-target_size = int(2 ** numpy.ceil(numpy.log2(len(scale))))
+target_size = int(2 ** np.ceil(np.log2(len(scale))))
+
 while len(scale) < target_size:
-  gap = numpy.argmax(numpy.diff(scale))
-  scale = scale[:gap + 1] + [(scale[gap] + scale[gap + 1]) / 2] + \
-      scale[gap + 1:]
+    gap = int(np.argmax(np.diff(scale)))
+    a = scale[gap]
+    b = scale[gap + 1]
+
+    if isinstance(a, int) and isinstance(b, int):
+        midpoint = (a + b) // 2      # Python 2 integer division
+    else:
+        midpoint = (a + b) / 2.0     # Python 2 float division
+
+    scale = scale[:gap + 1] + [midpoint] + scale[gap + 1:]
 
 scale.append(scale[-1])
 

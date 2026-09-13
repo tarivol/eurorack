@@ -32,6 +32,33 @@ import numpy
 import pylab
 import scipy.signal
 
+def pole_pairs_from_p(p):
+    # group into conjugate pairs explicitly
+    pairs = []
+    used = set()
+    for i, pi in enumerate(p):
+        if i in used:
+            continue
+        # find its conjugate
+        for j, pj in enumerate(p):
+            if j in used or j == i:
+                continue
+            if numpy.isclose(pi.real, pj.real) and numpy.isclose(pi.imag, -pj.imag):
+                pairs.append((pi, pj))
+                used.add(i)
+                used.add(j)
+                break
+    return pairs
+
+def pole_pair_to_f_fq_from_p(p):
+    pairs = []
+    for pair in pole_pairs_from_p(p):
+        f, fq = pole_pair_to_f_fq(numpy.array(pair))
+        pairs.append((f, fq))
+    # sort to mimic old ordering (e.g. by |f| descending)
+    pairs.sort(key=lambda t: abs(t[0]), reverse=True)
+    return pairs
+
 
 def pole_pair_to_f_fq(pole_pair):
   fq = 1 - pole_pair.prod()
@@ -46,7 +73,7 @@ def modified_chamberlin(f, fq, x, mode='bp'):
   y = numpy.zeros(x.shape)
   x_ = 0.0
   coefficient = 1.0 if mode == 'bp' else 0.0
-  for i in xrange(len(y)):
+  for i in range(len(y)):
     lp += f * bp
     bp += -fq * bp -f * lp + (x[i] + x_ * coefficient)
     x_ = x[i]
@@ -112,11 +139,11 @@ for index, (frequency, sr) in enumerate(zip(frequencies, sample_rates)):
   responses[sr] += [out]
   
   # Filter using modified Chamberlin filter
-  out = numpy.eye(IR_SIZE, 1).ravel() * gain
-  
   coefficients = [0, 0, 0]
-  for i in xrange(2):
-    f, fq = pole_pair_to_f_fq(p[i*2:i*2 + 2])
+  out = numpy.eye(IR_SIZE, 1).ravel() * gain
+
+  pairs = pole_pair_to_f_fq_from_p(p)
+  for f, fq in pairs:
     out = modified_chamberlin(f, fq, out, svf_mode)
     out = modified_chamberlin(f, fq, out, svf_mode)
     coefficients += [f, fq]

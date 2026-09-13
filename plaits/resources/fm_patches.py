@@ -29,7 +29,7 @@
 # My favorite DX7 patches.
 
 def Read(name):
-  data = file(name, 'rb').read()
+  data = open(name, 'rb').read()
   #for i in xrange(32):
   #  print data[6 + 118 + i * 128:6 + 118 + i * 128 + 10]
   # Skip the SysEx header and footer
@@ -40,11 +40,11 @@ def make_bank(patches):
   cache = {}
   for rom_name, index in patches:
     if not rom_name in cache:
-      rom_data = file('plaits/resources/syx/%s.syx' % rom_name, 'rb').read()
+      rom_data = open('plaits/resources/syx/%s.syx' % rom_name, 'rb').read()
       cache[rom_name] = rom_data[6:-2]
     patch = cache[rom_name][index * 128:(index + 1) * 128]
-    # print rom_name, index, patch[118:128]
-    data += map(ord, patch)
+    # print(rom_name, index, patch[118:128])
+    data += patch
   return data
   
 banks = [
@@ -172,5 +172,5 @@ banks = [
 patches = []
 for i, bank in enumerate(banks):
   bank_data = make_bank(bank)
-  file('bank_%d.raw' % i, 'wb').write(''.join(map(chr, bank_data)))
+  open('bank_%d.raw' % i, 'wb').write(bytes(bank_data))
   patches += [('bank_%d' % i, bank_data)]

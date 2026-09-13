@@ -74,9 +74,10 @@ def _GoToIffChunk(file_object, iff_chunk_id):
     chunk_size = file_object.read(4)
     if len(chunk_size) < 4:
       return -1
-    chunk_size = struct.unpack('<L', chunk_size)
+    chunk_size = struct.unpack('<L', chunk_size)[0]
+
     if iff_chunk_id == chunk_id:
-      return chunk_size[0]
+      return chunk_size
     else:
       file_object.seek(chunk_size, 1)
 
@@ -100,12 +101,12 @@ def ReadWavFile(file_name, scale=True):
       - The file header is corrupted.
       - The file uses an unsupported sampling rate, bitdepth or codec.
   """
-  f = file(file_name, 'r')
+  f = open(file_name, 'rb')
   header = f.read(12)
-  if len(header) < 12 or header[:4] != 'RIFF' or header[8:] != 'WAVE':
+  if len(header) < 12 or header[:4] != b'RIFF' or header[8:] != b'WAVE':
     raise AudioIoException('Corrupted header')
 
-  format_header_size = _GoToIffChunk(f, 'fmt ')
+  format_header_size = _GoToIffChunk(f, b'fmt ')
   if format_header_size < 0 or format_header_size != 16:
     raise AudioIoException('Invalid header size')
 
@@ -126,8 +127,8 @@ def ReadWavFile(file_name, scale=True):
   if bitdepth != 8 and bitdepth != 16:
     raise AudioIoException('Unsupported bit depth')
 
-  sample_data_size = _GoToIffChunk(f, 'data')
-  num_samples = sample_data_size / (bitdepth / 8)
+  sample_data_size = _GoToIffChunk(f, b'data')
+  num_samples = sample_data_size // (bitdepth // 8)
   # Make sure we are reading a number of samples which is a multiple of the
   # number of channels. Some corrupted stereo .wav files may contain 5 samples!
   num_samples -= num_samples % num_channels
@@ -136,7 +137,7 @@ def ReadWavFile(file_name, scale=True):
     if scale:
       samples = (samples / _UNSIGNED_CHAR_TO_FLOAT_SCALE) - 1.0
   else:
-    bytes = bitdepth / 8
+    bytes = bitdepth // 8
     samples = numpy.fromfile(f, dtype='<i%d' % bytes, count=num_samples)
     if scale:
       # Semantics of x = x / y and x /= y are different when x and y are
