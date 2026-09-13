@@ -34,7 +34,7 @@ namespace peaks {
 
 using namespace stmlib;
 
-Storage<0x801c000, 1> calibration_storage;
+Storage<0x08020000, 1> calibration_storage;
 
 void CalibrationData::Init() {
   if (!calibration_storage.Load(&calibration_settings_)) {

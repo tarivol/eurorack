@@ -48,6 +48,7 @@ PACKAGES       = peaks \
 		stmlib/utils \
 		stmlib/system
 RESOURCES      = peaks/resources
+PEAKS          = TRUE
 
 TOOLCHAIN_PATH ?= /usr/local/arm-4.8.3/
 
