@@ -37,7 +37,7 @@ namespace streams {
 static const char str_dummy[] = "dummy";
 
 
-const char* string_table[] = {
+const char* const string_table[] = {
   str_dummy,
 };
 
@@ -369,7 +369,7 @@ const int16_t wav_db[] = {
 };
 
 
-const int16_t* waveforms_table[] = {
+const int16_t* const waveforms_table[] = {
   wav_gompertz,
   wav_db,
 };
@@ -979,7 +979,7 @@ const uint16_t lut_soft_knee[] = {
 };
 
 
-const uint16_t* lookup_table_table[] = {
+const uint16_t* const lookup_table_table[] = {
   lut_env_linear,
   lut_env_expo,
   lut_env_quartic,
@@ -1423,7 +1423,7 @@ const uint32_t lut_lorenz_rate[] = {
 };
 
 
-const uint32_t* lookup_table_32_table[] = {
+const uint32_t* const lookup_table_32_table[] = {
   lut_env_increments,
   lut_lp_coefficients,
   lut_exp2,
